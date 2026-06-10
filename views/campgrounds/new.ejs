@@ -1,0 +1,77 @@
+<% layout('layouts/boilerplate') -%>
+
+    <div class='container d-flex justify-content-center align-items-center'>
+        <div class='row mb-5'>
+            <div class='col'>
+                <div class='card shadow'>
+                    <div class='card-body'>
+                        <h1 class='card-title mb-3'>New Campground</h1>
+                        <form action='/campgrounds' method='POST' novalidate enctype='multipart/form-data'
+                            class='validated-form'>
+                            <div class='mb-3'>
+                                <label class='form-label' for='title'>Campground Name:</label>
+                                <input class='form-control' type='text' id='title' name='title' required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class='row mb-3'>
+                                <div class='col-6'>
+                                    <label class='form-label' for='city'>City:</label>
+                                    <input class='form-control' type='text' id='city' name='city' required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class='col-6'>
+                                    <label class='form-label' for='state'>State:</label>
+                                    <select class='form-select' name='state' id='state' required>
+                                        <% for (state of states) { %>
+                                            <option value='<%=state%>'>
+                                                <%=state%>
+                                            </option>
+                                            <% } %>
+                                    </select>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class='form-label' for='price'>Price Per Night:</label>
+                                <div class='input-group has validation'>
+                                    <span class="input-group-text" id="price-label">$</span>
+                                    <input type="text" placeholder='0.0' class="form-control" id='price' name='price'
+                                        required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='mb-3'>
+                                <label class='form-label' for='description'>Description:</label>
+                                <textarea class='form-control' name='description' id='description' required></textarea>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+
+                            <div class='mb-3'>
+                                <label class='form-label' for='images'>Images:</label>
+                                <input class='form-control' type='file' id='images' name='images' multiple>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class='mb-3'>
+                                <button type='submit' class='btn-dark'>Add Campground</button>
+                            </div>
+                        </form>
+                        <div class='mb-3'>
+                            <a href='/campgrounds'>All Campgrounds</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

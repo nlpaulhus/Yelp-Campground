@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate') -%>
+    <link rel="stylesheet" href="/stylesheets/stars.css" />
+
+    <div id="cluster-map"></div>
+    <div class='container'>
+        <h1>All Campgrounds</h1>
+        <div>
+            <p><a href='/campgrounds/new'>Add Campground</a></p>
+        </div>
+
+        <% for (let campground of campgrounds) { %>
+            <div class="card mb-3">
+                <div class='row'>
+                    <div class='col-md-4'>
+                        <% if(campground.images.length) { %>
+                            <img class='img-fluid' src='<%=campground.images[0].url%>'>
+                            <% } else { %>
+                                <img class='img-fluid'
+                                    src='https://www.kindpng.com/picc/m/478-4782654_tent-cartoon-camping-clip-art-camping-transparent-hd.png'>
+                                <% } %>
+                    </div>
+                    <div class='col-md-8'>
+                        <div class='card-body'>
+                            <h5 class='card-title'>
+                                <%=campground.title%>
+                            </h5>
+                            <% if (campground.reviews.length) {%>
+                                <p class="starability-result" data-rating="<%= campground.avgRating%>"> Rated:
+                                    <%=campground.avgRating%>
+                                </p>
+                                <% } %>
+                                    <p class='card-text'>
+                                        <%=campground.description%>
+                                    </p>
+                                    <p <small class='text-muted'>
+                                        <%=campground.city%>, <%=campground.state%>
+                                    </p>
+                                    <a class='btn btn-dark' href='/campgrounds/<%=campground._id%>'>Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    </div>
+
+
+    <script>
+        const mapToken = '<%- process.env.MAPBOX_TOKEN%>';
+        const campgrounds = { features:<%-JSON.stringify(campgrounds) %>}
+    </script>
+
+    <script src='/javascripts/indexPageMap.js'></script>
